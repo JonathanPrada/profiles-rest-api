@@ -26,7 +26,7 @@ class UserProfileManager(BaseUserManager):
         # We do it here because the set password function will encrypt it here
         user.set_password(password)
         # Save this user to the model in the database
-        user.save(self._db)
+        user.save(using=self._db)
 
         return user
 
@@ -38,7 +38,7 @@ class UserProfileManager(BaseUserManager):
         user.is_superuser = True
         user.is_staff = True
 
-        user.save(self._db)
+        user.save(using=self._db)
 
         return user
 
