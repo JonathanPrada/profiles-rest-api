@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
+from rest_framework import filters
 
 from . import serializers
 from . import models
@@ -110,5 +111,5 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     # Comma means tuple created, we can add multiple permission classes
     authentication_classes = (TokenAuthentication,)
     permission_classes = (permissions.UpdateOwnProfile,)
-
-    # Add token authentication
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('name', 'email',)
